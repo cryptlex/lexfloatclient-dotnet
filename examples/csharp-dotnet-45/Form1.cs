@@ -15,13 +15,13 @@ namespace FloatSample
         {
             switch (status)
             {
-                case LexFloatClient.StatusCodes.LF_OK:
+                case LexFloatStatusCodes.LF_OK:
                     this.statusLabel.Text = "The license lease has renewed successfully.";
                     break;
-                case LexFloatClient.StatusCodes.LF_E_LICENSE_NOT_FOUND:
+                case LexFloatStatusCodes.LF_E_LICENSE_NOT_FOUND:
                     this.statusLabel.Text = "The license expired before it could be renewed.";
                     break;
-                case LexFloatClient.StatusCodes.LF_E_LICENSE_EXPIRED_INET:
+                case LexFloatStatusCodes.LF_E_LICENSE_EXPIRED_INET:
                     this.statusLabel.Text = "The license expired due to network connection failure.";
                     break;
                 default:
@@ -32,52 +32,36 @@ namespace FloatSample
 
         private void leaseBtn_Click(object sender, EventArgs e)
         {
-            if (LexFloatClient.HasFloatingLicense() == LexFloatClient.StatusCodes.LF_OK)
+            try
             {
-                return;
+                LexFloatClient.SetHostProductId("PASTE_YOUR_PRODUCT_ID");
+                LexFloatClient.SetHostUrl("http://localhost:8090");
+                LexFloatClient.SetFloatingLicenseCallback(LicenceRenewCallback);
+
+                LexFloatClient.RequestFloatingLicense();
+                this.statusLabel.Text = "License leased successfully!";
             }
-            int status;
-            status = LexFloatClient.SetHostProductId("PASTE_YOUR_PRODUCT_ID");
-            if (status != LexFloatClient.StatusCodes.LF_OK)
+            catch (LexFloatClientException ex)
             {
-                this.statusLabel.Text = "Error setting product id: " + status.ToString();
-                return;
+                this.statusLabel.Text = "Error code: " + ex.Code.ToString() + " Error message: " + ex.Message;
             }
-            status = LexFloatClient.SetHostUrl("http://localhost:8090");
-            if (status != LexFloatClient.StatusCodes.LF_OK)
-            {
-                this.statusLabel.Text = "Error setting host url: " + status.ToString();
-                return;
-            }
-            status = LexFloatClient.SetFloatingLicenseCallback(LicenceRenewCallback);
-            if (status != LexFloatClient.StatusCodes.LF_OK)
-            {
-                this.statusLabel.Text = "Error setting callback function: " + status.ToString();
-                return;
-            }
-            status = LexFloatClient.RequestFloatingLicense();
-            if (status != LexFloatClient.StatusCodes.LF_OK)
-            {
-                this.statusLabel.Text = "Error requesting license: " + status.ToString();
-                return;
-            }
-            this.statusLabel.Text = "License leased successfully!";
         }
 
         private void dropBtn_Click(object sender, EventArgs e)
         {
-            if (LexFloatClient.HasFloatingLicense() != LexFloatClient.StatusCodes.LF_OK)
+            try
             {
-                return;
+                if (!LexFloatClient.HasFloatingLicense())
+                {
+                    return;
+                }
+                LexFloatClient.DropFloatingLicense();
+                this.statusLabel.Text = "License dropped successfully!";
             }
-            int status;
-            status = LexFloatClient.DropFloatingLicense();
-            if (status != LexFloatClient.StatusCodes.LF_OK)
+            catch (LexFloatClientException ex)
             {
-                this.statusLabel.Text = "Error dropping license: " + status.ToString();
-                return;
+                this.statusLabel.Text = "Error code: " + ex.Code.ToString() + " Error message: " + ex.Message;
             }
-            this.statusLabel.Text = "License dropped successfully!";
         }
     }
 }
