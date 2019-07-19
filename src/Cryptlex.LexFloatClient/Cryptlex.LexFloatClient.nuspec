@@ -12,7 +12,11 @@
         <language>en-US</language>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <summary>LexFloatClient API wrapper for .NET (floating licensing library).</summary>
-        <description>Cryptlex lets you license your software apps effortlessly. You can easily generate license keys using the REST API or Dashboard and validate the license keys in your software apps using LexFloatClient (Cryptlex client library).</description>
+        <description>
+          Cryptlex lets you license your software apps effortlessly. You can easily generate license keys using the REST API or Dashboard and validate the license keys in your software apps using LexFloatClient (Cryptlex client library).
+          
+          Additionally, you can offer trials, subscriptions, and implement floating licenses using LexFloatClient library.
+        </description>
         <dependencies>
             <group targetFramework="net45" />
             <group targetFramework="netstandard1.1"/>
