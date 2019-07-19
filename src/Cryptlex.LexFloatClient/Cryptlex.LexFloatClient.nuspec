@@ -15,7 +15,7 @@
         <description>
           Cryptlex lets you license your software apps effortlessly. You can easily generate license keys using the REST API or Dashboard and validate the license keys in your software apps using LexFloatClient (Cryptlex client library).
           
-          Additionally, you can offer trials, subscriptions, and implement floating licenses using LexFloatClient library.
+Additionally, you can offer trials, subscriptions, and implement floating licenses using LexFloatClient library.
         </description>
         <dependencies>
             <group targetFramework="net45" />
