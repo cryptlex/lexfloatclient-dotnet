@@ -22,8 +22,15 @@ namespace Cryptlex
         [DllImport(DLL_FILE_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
         public static extern int SetHostProductId(string productId);
 
+        [DllImport(DLL_FILE_NAME, CharSet = CharSet.Ansi, EntryPoint = "SetHostProductId", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int SetHostProductIdA(string productId);
+
         [DllImport(DLL_FILE_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
         public static extern int SetHostUrl(string hostUrl);
+
+        [DllImport(DLL_FILE_NAME, CharSet = CharSet.Ansi, EntryPoint = "SetHostUrl", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int SetHostUrlA(string hostUrl);
+
 
         [DllImport(DLL_FILE_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
         public static extern int SetFloatingLicenseCallback(LexFloatClient.CallbackType callback);
@@ -31,17 +38,29 @@ namespace Cryptlex
         [DllImport(DLL_FILE_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
         public static extern int SetFloatingClientMetadata(string key, string value);
 
+        [DllImport(DLL_FILE_NAME, CharSet = CharSet.Ansi, EntryPoint = "SetFloatingClientMetadata", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int SetFloatingClientMetadataA(string key, string value);
+
         [DllImport(DLL_FILE_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetHostLicenseMetadata(string key, StringBuilder value, int length);
 
+        [DllImport(DLL_FILE_NAME, CharSet = CharSet.Ansi, EntryPoint = "GetHostLicenseMetadata", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetHostLicenseMetadataA(string key, StringBuilder value, int length);
+
         [DllImport(DLL_FILE_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetHostLicenseMeterAttribute(string name, ref uint allowedUses, ref uint totalUses);
+
+        [DllImport(DLL_FILE_NAME, CharSet = CharSet.Ansi, EntryPoint = "GetHostLicenseMeterAttribute", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetHostLicenseMeterAttributeA(string name, ref uint allowedUses, ref uint totalUses);
 
         [DllImport(DLL_FILE_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetHostLicenseExpiryDate(ref uint expiryDate);
 
         [DllImport(DLL_FILE_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetFloatingClientMeterAttributeUses(string name, ref uint uses);
+
+        [DllImport(DLL_FILE_NAME, CharSet = CharSet.Ansi, EntryPoint = "GetFloatingClientMeterAttributeUses", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetFloatingClientMeterAttributeUsesA(string name, ref uint uses);
 
         [DllImport(DLL_FILE_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
         public static extern int RequestFloatingLicense();
@@ -55,11 +74,20 @@ namespace Cryptlex
         [DllImport(DLL_FILE_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
         public static extern int IncrementFloatingClientMeterAttributeUses(string name, uint increment);
 
+        [DllImport(DLL_FILE_NAME, CharSet = CharSet.Ansi, EntryPoint = "IncrementFloatingClientMeterAttributeUses", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int IncrementFloatingClientMeterAttributeUsesA(string name, uint increment);
+
         [DllImport(DLL_FILE_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
         public static extern int DecrementFloatingClientMeterAttributeUses(string name, uint decrement);
 
+        [DllImport(DLL_FILE_NAME, CharSet = CharSet.Ansi, EntryPoint = "DecrementFloatingClientMeterAttributeUses", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int DecrementFloatingClientMeterAttributeUsesA(string name, uint decrement);
+
         [DllImport(DLL_FILE_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
         public static extern int ResetFloatingClientMeterAttributeUses(string name);
+
+        [DllImport(DLL_FILE_NAME, CharSet = CharSet.Ansi, EntryPoint = "ResetFloatingClientMeterAttributeUses", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int ResetFloatingClientMeterAttributeUsesA(string name);
 
 
         [DllImport(DLL_FILE_NAME_X86, CharSet = CharSet.Unicode, EntryPoint = "SetHostProductId", CallingConvention = CallingConvention.Cdecl)]
