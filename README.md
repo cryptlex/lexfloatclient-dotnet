@@ -21,4 +21,4 @@ https://www.nuget.org/packages/Cryptlex.LexFloatClient
 
 Refer to following for documentation:
 
-https://docs.cryptlex.com/node-locked-licenses/using-LexFloatClient
+https://docs.cryptlex.com/floating-licenses/on-premise-floating-licenses/using-lexfloatclient
