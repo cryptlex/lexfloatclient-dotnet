@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>Cryptlex.LexFloatClient</id>
+        <version>3.6.3</version>
+        <title>Cryptlex Floating Licensing Library</title>
+        <authors>Cryptlex</authors>
+        <owners>Cryptlex LLC</owners>
+        <projectUrl>https://cryptlex.com</projectUrl>
+        <repository type="git" url="https://github.com/cryptlex/lexfloatclient-dotnet" />
+        <license type="expression">MIT</license>
+        <language>en-US</language>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <summary>LexFloatClient API wrapper for .NET (floating licensing library).</summary>
+        <description>Cryptlex lets you license your software apps effortlessly. You can easily generate license keys using the REST API or Dashboard and validate the license keys in your software apps using LexFloatClient (Cryptlex client library).</description>
+        <dependencies>
+            <group targetFramework="net45" />
+            <group targetFramework="netstandard1.1"/>
+        </dependencies>
+        <copyright>Copyright (c) 2019 Cryptlex LLC </copyright>
+        <tags>lexfloatclient cryptlex licensing-library floating-licenses</tags>
+        <references>
+            <reference file="Cryptlex.LexFloatClient.dll" />
+        </references>
+    </metadata>
+    <files>
+        <file src="build\Cryptlex.LexFloatClient.targets" target="build\Cryptlex.LexFloatClient.targets" />
+        <file src="runtimes\win-x86\native\*.dll" target="runtimes\win-x86\native" />
+        <file src="runtimes\win-x64\native\*.dll" target="runtimes\win-x64\native" />
+        <file src="runtimes\osx-x64\native\*.dylib" target="runtimes\osx-x64\native" />
+        <file src="runtimes\linux-x64\native\*.so" target="runtimes\linux-x64\native" />
+        <file src="runtimes\linux-musl-x64\native\*.so" target="runtimes\linux-musl-x64\native" />
+        <file src="bin\Release\net45\Cryptlex.LexFloatClient.dll" target="lib\net45" />
+        <file src="bin\Release\Cryptlex.LexFloatClient.xml" target="lib\net45" />
+        <file src="bin\Release\netstandard1.1\Cryptlex.LexFloatClient.dll" target="lib\netstandard1.1" />
+        <file src="bin\Release\Cryptlex.LexFloatClient.xml" target="lib\netstandard1.1" />
+    </files>
+</package>
