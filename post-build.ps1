@@ -1,5 +1,5 @@
 $base_url = "https://dl.cryptlex.com/downloads"
-$lexfloatclient_version = "v4.1.0"
+$lexfloatclient_version = "v4.2.0"
 new-item -Name tmp -ItemType directory
 
 $url = "$base_url/$lexfloatclient_version/LexFloatClient-Win.zip"
