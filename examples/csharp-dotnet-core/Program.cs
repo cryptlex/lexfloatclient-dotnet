@@ -9,7 +9,7 @@ namespace Sample
         {
             try
             {
-                LexFloatClient.SetHostProductId("bb65d1d9-34a9-4add-9f73-61fc49fc91ed");
+                LexFloatClient.SetHostProductId("PASTE_PRODUCT_ID");
                 LexFloatClient.SetHostUrl("http://localhost:8090");
                 LexFloatClient.SetFloatingLicenseCallback(LicenseRenewCallback);
 

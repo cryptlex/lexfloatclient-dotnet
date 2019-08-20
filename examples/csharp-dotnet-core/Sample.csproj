@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Cryptlex.LexFloatClient" Version="4.0.1" />
+    <PackageReference Include="Cryptlex.LexFloatClient" Version="4.1.1" />
   </ItemGroup>
 
 </Project>
