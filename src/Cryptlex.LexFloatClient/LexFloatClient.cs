@@ -126,11 +126,11 @@ namespace Cryptlex
             int status;
             if (LexFloatClientNative.IsWindows())
             {
-                status = IntPtr.Size == 4 ? LexFloatClientNative.GetHostLicenseMetadata_x86(key, builder, builder.Length) : LexFloatClientNative.GetHostLicenseMetadata(key, builder, builder.Length);
+                status = IntPtr.Size == 4 ? LexFloatClientNative.GetHostLicenseMetadata_x86(key, builder, builder.Capacity) : LexFloatClientNative.GetHostLicenseMetadata(key, builder, builder.Capacity);
             }
             else
             {
-                status = LexFloatClientNative.GetHostLicenseMetadataA(key, builder, builder.Length);
+                status = LexFloatClientNative.GetHostLicenseMetadataA(key, builder, builder.Capacity);
             }
             if (LexFloatStatusCodes.LF_OK == status)
             {
