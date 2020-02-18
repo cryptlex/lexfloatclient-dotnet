@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>Cryptlex.LexFloatClient</id>
-        <version>4.1.1</version>
+        <version>4.3.2</version>
         <title>Cryptlex Floating Licensing Library</title>
         <authors>Cryptlex</authors>
         <owners>Cryptlex LLC</owners>
@@ -21,7 +21,7 @@ Additionally, you can offer trials, subscriptions, and implement floating licens
             <group targetFramework="net45" />
             <group targetFramework="netstandard1.1"/>
         </dependencies>
-        <copyright>Copyright (c) 2019 Cryptlex LLC </copyright>
+        <copyright>Copyright (c) 2020 Cryptlex LLC </copyright>
         <tags>lexfloatclient cryptlex licensing-library floating-licenses</tags>
         <references>
             <reference file="Cryptlex.LexFloatClient.dll" />
