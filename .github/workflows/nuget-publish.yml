@@ -3,7 +3,7 @@ name: Build Cryptlex.LexFloatClient package
 on:
   push:
     tags:
-    - '3.*'
+    - '4.*'
 
 jobs:
   build-publish:
