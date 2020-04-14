@@ -1,3 +1,5 @@
+![Build Cryptlex.LexFloatClient package](https://github.com/cryptlex/lexfloatclient-dotnet/workflows/Build%20Cryptlex.LexFloatClient%20package/badge.svg)
+
 # Cryptlex.LexFloatClient
 
 Cryptlex lets you license your software apps effortlessly. You can easily generate license keys using the REST API or Dashboard and validate the license keys in your software apps using LexActivator (Cryptlex client library).
