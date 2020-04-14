@@ -1,0 +1,39 @@
+name: Build Cryptlex.LexFloatClient package
+
+on:
+  push:
+    tags:
+    - '3.*'
+
+jobs:
+  build-publish:
+
+    runs-on: windows-2019
+    steps:
+    - uses: actions/checkout@v2
+      
+    - name: Setup NuGet
+      uses: nuget/setup-nuget@v1
+      with:
+        nuget-api-key: ${{ secrets.NUGET_API_KEY }}
+        nuget-version: '5.x'
+      
+    - name: Restore NuGet Packages
+      run: nuget restore Cryptlex.LexFloatClient.sln
+      
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v1.0.0
+    
+    - name: Build Solution
+      run: msbuild Cryptlex.LexFloatClient.sln /p:platform="Any CPU" /p:configuration="Release" /p:VisualStudioVersion="16.0"
+    
+    - name: Download Native Libs
+      run: .\post-build.ps1
+      shell: powershell
+      
+    - name: Pack NuGet Package
+      run: nuget pack src\Cryptlex.LexFloatClient\Cryptlex.LexFloatClient.nuspec -NonInteractive -OutputDirectory nupkg -Properties Configuration=Release -Verbosity Detailed
+    
+    - name: Push NuGet Package
+      run: nuget push nupkg\*.nupkg -SkipDuplicate -Source https://api.nuget.org/v3/index.json -NoSymbols
+
