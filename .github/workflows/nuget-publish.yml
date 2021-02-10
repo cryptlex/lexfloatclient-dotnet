@@ -25,7 +25,7 @@ jobs:
       
       - name: Update Library Version
         run: |
-          sed -i '/lexactivator_version =/!b;c$lexfloatclient_version ="v${{ github.event.inputs.libraryVersion }}"' post-build.ps1
+          sed -i '/lexfloatclient_version =/!b;c$lexfloatclient_version ="v${{ github.event.inputs.libraryVersion }}"' post-build.ps1
      
       - name: Commit, Tag and Push
         run: |
