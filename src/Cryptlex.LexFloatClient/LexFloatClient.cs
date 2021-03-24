@@ -140,26 +140,26 @@ namespace Cryptlex
         }
 
         /// <summary>
-        /// Gets the license meter attribute allowed uses and total uses associated 
+        /// Gets the license meter attribute allowed uses, total uses and gross uses associated 
         /// with the LexFloatServer license.
         /// </summary>
         /// <param name="name">name of the meter attribute</param>
         /// <returns>Returns the values of meter attribute allowed and total uses.</returns>
         public static LicenseMeterAttribute GetHostLicenseMeterAttribute(string name)
         {
-            uint allowedUses = 0, totalUses = 0;
+            uint allowedUses = 0, totalUses = 0, grossUses = 0;
             int status;
             if (LexFloatClientNative.IsWindows())
             {
-                status = IntPtr.Size == 4 ? LexFloatClientNative.GetHostLicenseMeterAttribute_x86(name, ref allowedUses, ref totalUses) : LexFloatClientNative.GetHostLicenseMeterAttribute(name, ref allowedUses, ref totalUses);
+                status = IntPtr.Size == 4 ? LexFloatClientNative.GetHostLicenseMeterAttribute_x86(name, ref allowedUses, ref totalUses, ref grossUses) : LexFloatClientNative.GetHostLicenseMeterAttribute(name, ref allowedUses, ref totalUses, ref grossUses);
             }
             else
             {
-                status = LexFloatClientNative.GetHostLicenseMeterAttributeA(name, ref allowedUses, ref totalUses);
+                status = LexFloatClientNative.GetHostLicenseMeterAttributeA(name, ref allowedUses, ref totalUses, ref grossUses);
             }
             if (LexFloatStatusCodes.LF_OK == status)
             {
-                return new LicenseMeterAttribute(name, allowedUses, totalUses);
+                return new LicenseMeterAttribute(name, allowedUses, totalUses, grossUses);
             }
             throw new LexFloatClientException(status);
         }

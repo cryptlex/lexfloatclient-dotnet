@@ -48,10 +48,10 @@ namespace Cryptlex
         public static extern int GetHostLicenseMetadataA(string key, StringBuilder value, int length);
 
         [DllImport(DLL_FILE_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int GetHostLicenseMeterAttribute(string name, ref uint allowedUses, ref uint totalUses);
+        public static extern int GetHostLicenseMeterAttribute(string name, ref uint allowedUses, ref uint totalUses, ref uint grossUses);
 
         [DllImport(DLL_FILE_NAME, CharSet = CharSet.Ansi, EntryPoint = "GetHostLicenseMeterAttribute", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int GetHostLicenseMeterAttributeA(string name, ref uint allowedUses, ref uint totalUses);
+        public static extern int GetHostLicenseMeterAttributeA(string name, ref uint allowedUses, ref uint totalUses, ref uint grossUses);
 
         [DllImport(DLL_FILE_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetHostLicenseExpiryDate(ref uint expiryDate);
@@ -106,7 +106,7 @@ namespace Cryptlex
         public static extern int GetHostLicenseMetadata_x86(string key, StringBuilder value, int length);
 
         [DllImport(DLL_FILE_NAME_X86, CharSet = CharSet.Unicode, EntryPoint = "GetHostLicenseMeterAttribute", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int GetHostLicenseMeterAttribute_x86(string name, ref uint allowedUses, ref uint totalUses);
+        public static extern int GetHostLicenseMeterAttribute_x86(string name, ref uint allowedUses, ref uint totalUses, ref uint grossUses);
 
         [DllImport(DLL_FILE_NAME_X86, CharSet = CharSet.Unicode, EntryPoint = "GetHostLicenseExpiryDate", CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetHostLicenseExpiryDate_x86(ref uint expiryDate);
