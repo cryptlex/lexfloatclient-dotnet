@@ -115,6 +115,77 @@ namespace Cryptlex
         }
 
         /// <summary>
+        /// Gets the product version name.
+        /// </summary>
+        /// <returns>Returns the value of the product version name.</returns>
+        public static string GetProductVersionName()
+        {
+            var builder = new StringBuilder(256);
+            int status;
+            if (LexFloatClientNative.IsWindows())
+            {
+                status = IntPtr.Size == 4 ? LexFloatClientNative.GetProductVersionName_x86(builder, builder.Capacity) : LexFloatClientNative.GetProductVersionName(builder, builder.Capacity);
+            }
+            else
+            {
+                status = LexFloatClientNative.GetProductVersionNameA(builder, builder.Capacity);
+            }
+            if (LexFloatStatusCodes.LF_OK == status)
+            {
+                return builder.ToString();
+            }
+            throw new LexFloatClientException(status);
+        }
+
+        /// <summary>
+        /// Gets the product version display name.
+        /// </summary>
+        /// <returns>Returns the value of the product version display name.</returns>
+        public static string GetProductVersionDisplayName()
+        {
+            var builder = new StringBuilder(256);
+            int status;
+            if (LexFloatClientNative.IsWindows())
+            {
+                status = IntPtr.Size == 4 ? LexFloatClientNative.GetProductVersionDisplayName_x86(builder, builder.Capacity) : LexFloatClientNative.GetProductVersionDisplayName(builder, builder.Capacity);
+            }
+            else
+            {
+                status = LexFloatClientNative.GetProductVersionDisplayNameA(builder, builder.Capacity);
+            }
+            if (LexFloatStatusCodes.LF_OK == status)
+            {
+                return builder.ToString();
+            }
+            throw new LexFloatClientException(status);
+        }
+
+        /// <summary>
+        /// Gets the product version feature flag.
+        /// </summary>
+        /// <param name="name">name of the product version feature flag</param>
+        /// <returns>Returns the product version feature flag.</returns>
+        public static ProductVersionFeatureFlag GetProductVersionFeatureFlag(string name)
+        {
+            uint enabled = 0;
+            var builder = new StringBuilder(256);
+            int status;
+            if (LexFloatClientNative.IsWindows())
+            {
+                status = IntPtr.Size == 4 ? LexFloatClientNative.GetProductVersionFeatureFlag_x86(name, ref enabled, builder, builder.Capacity) : LexFloatClientNative.GetProductVersionFeatureFlag(name, ref enabled, builder, builder.Capacity);
+            }
+            else
+            {
+                status = LexFloatClientNative.GetProductVersionFeatureFlagA(name, ref enabled, builder, builder.Capacity);
+            }
+            if (LexFloatStatusCodes.LF_OK == status)
+            {
+                return new ProductVersionFeatureFlag(name, enabled > 0, builder.ToString());
+            }
+            throw new LexFloatClientException(status);
+        }
+
+        /// <summary>
         /// Get the value of the license metadata field associated with the
         /// LexFloatServer license key.
         /// </summary>
