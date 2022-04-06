@@ -67,6 +67,12 @@ namespace Cryptlex
                     
                 case LexFloatStatusCodes.LF_E_METER_ATTRIBUTE_USES_LIMIT_REACHED:
                    return "The meter attribute has reached it's usage limit.";
+
+                case LexFloatStatusCodes.LF_E_PRODUCT_VERSION_NOT_LINKED:
+                   return "No product version is linked with the license.";
+
+                case LexFloatStatusCodes.LF_E_FEATURE_FLAG_NOT_FOUND:
+                   return "The product version feature flag does not exist.";
                     
                 case LexFloatStatusCodes.LF_E_IP:
                    return "IP address is not allowed.";

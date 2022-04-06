@@ -42,6 +42,24 @@ namespace Cryptlex
         public static extern int SetFloatingClientMetadataA(string key, string value);
 
         [DllImport(DLL_FILE_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetProductVersionName(StringBuilder name, int length);
+
+        [DllImport(DLL_FILE_NAME, CharSet = CharSet.Ansi, EntryPoint = "GetProductVersionName", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetProductVersionNameA(StringBuilder name, int length);
+
+        [DllImport(DLL_FILE_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetProductVersionDisplayName(StringBuilder displayName, int length);
+
+        [DllImport(DLL_FILE_NAME, CharSet = CharSet.Ansi, EntryPoint = "GetProductVersionDisplayName", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetProductVersionDisplayNameA(StringBuilder displayName, int length);
+
+        [DllImport(DLL_FILE_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetProductVersionFeatureFlag(string name, ref uint enabled, StringBuilder data, int length);
+
+        [DllImport(DLL_FILE_NAME, CharSet = CharSet.Ansi, EntryPoint = "GetProductVersionFeatureFlag", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetProductVersionFeatureFlagA(string name, ref uint enabled, StringBuilder data, int length);
+
+        [DllImport(DLL_FILE_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetHostLicenseMetadata(string key, StringBuilder value, int length);
 
         [DllImport(DLL_FILE_NAME, CharSet = CharSet.Ansi, EntryPoint = "GetHostLicenseMetadata", CallingConvention = CallingConvention.Cdecl)]
@@ -101,6 +119,15 @@ namespace Cryptlex
 
         [DllImport(DLL_FILE_NAME_X86, CharSet = CharSet.Unicode, EntryPoint = "SetFloatingClientMetadata", CallingConvention = CallingConvention.Cdecl)]
         public static extern int SetFloatingClientMetadata_x86(string key, string value);
+
+        [DllImport(DLL_FILE_NAME_X86, CharSet = CharSet.Unicode, EntryPoint = "GetProductVersionName", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetProductVersionName_x86(StringBuilder name, int length);
+
+        [DllImport(DLL_FILE_NAME_X86, CharSet = CharSet.Unicode, EntryPoint = "GetProductVersionDisplayName", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetProductVersionDisplayName_x86(StringBuilder displayName, int length);
+
+        [DllImport(DLL_FILE_NAME_X86, CharSet = CharSet.Unicode, EntryPoint = "GetProductVersionFeatureFlag", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetProductVersionFeatureFlag_x86(string name, ref uint enabled, StringBuilder data, int length);
 
         [DllImport(DLL_FILE_NAME_X86, CharSet = CharSet.Unicode, EntryPoint = "GetHostLicenseMetadata", CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetHostLicenseMetadata_x86(string key, StringBuilder value, int length);
