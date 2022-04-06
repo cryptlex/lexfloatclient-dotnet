@@ -147,14 +147,14 @@ namespace Cryptlex
 
             MESSAGE: No product version is linked with the license.
         */
-        public const int LF_E_PRODUCT_VERSION_NOT_LINKED = 75;
+        public const int LF_E_PRODUCT_VERSION_NOT_LINKED = 57;
 
         /*
             CODE: LF_E_FEATURE_FLAG_NOT_FOUND
 
             MESSAGE: The product version feature flag does not exist.
         */
-        public const int LF_E_FEATURE_FLAG_NOT_FOUND = 76;
+        public const int LF_E_FEATURE_FLAG_NOT_FOUND = 58;
 
         /*
             CODE: LF_E_IP
