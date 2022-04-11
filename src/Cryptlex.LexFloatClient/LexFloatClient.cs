@@ -118,17 +118,17 @@ namespace Cryptlex
         /// Gets the product version name.
         /// </summary>
         /// <returns>Returns the value of the product version name.</returns>
-        public static string GetProductVersionName()
+        public static string GetHostProductVersionName()
         {
             var builder = new StringBuilder(256);
             int status;
             if (LexFloatClientNative.IsWindows())
             {
-                status = IntPtr.Size == 4 ? LexFloatClientNative.GetProductVersionName_x86(builder, builder.Capacity) : LexFloatClientNative.GetProductVersionName(builder, builder.Capacity);
+                status = IntPtr.Size == 4 ? LexFloatClientNative.GetHostProductVersionName_x86(builder, builder.Capacity) : LexFloatClientNative.GetHostProductVersionName(builder, builder.Capacity);
             }
             else
             {
-                status = LexFloatClientNative.GetProductVersionNameA(builder, builder.Capacity);
+                status = LexFloatClientNative.GetHostProductVersionNameA(builder, builder.Capacity);
             }
             if (LexFloatStatusCodes.LF_OK == status)
             {
@@ -141,17 +141,17 @@ namespace Cryptlex
         /// Gets the product version display name.
         /// </summary>
         /// <returns>Returns the value of the product version display name.</returns>
-        public static string GetProductVersionDisplayName()
+        public static string GetHostProductVersionDisplayName()
         {
             var builder = new StringBuilder(256);
             int status;
             if (LexFloatClientNative.IsWindows())
             {
-                status = IntPtr.Size == 4 ? LexFloatClientNative.GetProductVersionDisplayName_x86(builder, builder.Capacity) : LexFloatClientNative.GetProductVersionDisplayName(builder, builder.Capacity);
+                status = IntPtr.Size == 4 ? LexFloatClientNative.GetHostProductVersionDisplayName_x86(builder, builder.Capacity) : LexFloatClientNative.GetHostProductVersionDisplayName(builder, builder.Capacity);
             }
             else
             {
-                status = LexFloatClientNative.GetProductVersionDisplayNameA(builder, builder.Capacity);
+                status = LexFloatClientNative.GetHostProductVersionDisplayNameA(builder, builder.Capacity);
             }
             if (LexFloatStatusCodes.LF_OK == status)
             {
@@ -165,18 +165,18 @@ namespace Cryptlex
         /// </summary>
         /// <param name="name">name of the product version feature flag</param>
         /// <returns>Returns the product version feature flag.</returns>
-        public static ProductVersionFeatureFlag GetProductVersionFeatureFlag(string name)
+        public static ProductVersionFeatureFlag GetHostProductVersionFeatureFlag(string name)
         {
             uint enabled = 0;
             var builder = new StringBuilder(256);
             int status;
             if (LexFloatClientNative.IsWindows())
             {
-                status = IntPtr.Size == 4 ? LexFloatClientNative.GetProductVersionFeatureFlag_x86(name, ref enabled, builder, builder.Capacity) : LexFloatClientNative.GetProductVersionFeatureFlag(name, ref enabled, builder, builder.Capacity);
+                status = IntPtr.Size == 4 ? LexFloatClientNative.GetHostProductVersionFeatureFlag_x86(name, ref enabled, builder, builder.Capacity) : LexFloatClientNative.GetHostProductVersionFeatureFlag(name, ref enabled, builder, builder.Capacity);
             }
             else
             {
-                status = LexFloatClientNative.GetProductVersionFeatureFlagA(name, ref enabled, builder, builder.Capacity);
+                status = LexFloatClientNative.GetHostProductVersionFeatureFlagA(name, ref enabled, builder, builder.Capacity);
             }
             if (LexFloatStatusCodes.LF_OK == status)
             {
