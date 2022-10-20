@@ -5,7 +5,7 @@
     <version>4.7.1</version>
         <title>Cryptlex Floating Licensing Library</title>
         <authors>Cryptlex</authors>
-        <owners>Cryptlex LLC</owners>
+        <owners>Cryptlex LLP</owners>
         <projectUrl>https://cryptlex.com</projectUrl>
         <repository type="git" url="https://github.com/cryptlex/lexfloatclient-dotnet" />
         <license type="expression">MIT</license>
@@ -21,7 +21,7 @@ Additionally, you can offer trials, subscriptions, and implement floating licens
             <group targetFramework="net45" />
             <group targetFramework="netstandard1.1"/>
         </dependencies>
-        <copyright>Copyright (c) 2020 Cryptlex LLC </copyright>
+        <copyright>Copyright (c) 2022 Cryptlex LLP </copyright>
         <tags>lexfloatclient cryptlex licensing-library floating-licenses</tags>
         <references>
             <reference file="Cryptlex.LexFloatClient.dll" />
