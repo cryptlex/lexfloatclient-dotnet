@@ -9,7 +9,11 @@
         <DefineConstants>NETSTANDARD</DefineConstants>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)'=='Release'">
-      <DocumentationFile>bin\release\Cryptlex.LexFloatClient.xml</DocumentationFile>
+        <DocumentationFile>bin\release\Cryptlex.LexFloatClient.xml</DocumentationFile>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)'=='Release'">
+        <SignAssembly>true</SignAssembly>
+        <AssemblyOriginatorKeyFile>lexfloatclient.snk</AssemblyOriginatorKeyFile>
     </PropertyGroup>
     <ItemGroup Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('$(TargetFramework)', '^net\d'))">
         <Reference Include="System.Windows.Forms" />
