@@ -165,7 +165,7 @@ namespace Cryptlex
         /// </summary>
         /// <param name="name">name of the product version feature flag</param>
         /// <returns>Returns the product version feature flag.</returns>
-        public static ProductVersionFeatureFlag GetHostProductVersionFeatureFlag(string name)
+        public static HostProductVersionFeatureFlag GetHostProductVersionFeatureFlag(string name)
         {
             uint enabled = 0;
             var builder = new StringBuilder(256);
@@ -180,7 +180,7 @@ namespace Cryptlex
             }
             if (LexFloatStatusCodes.LF_OK == status)
             {
-                return new ProductVersionFeatureFlag(name, enabled > 0, builder.ToString());
+                return new HostProductVersionFeatureFlag(name, enabled > 0, builder.ToString());
             }
             throw new LexFloatClientException(status);
         }
@@ -216,7 +216,7 @@ namespace Cryptlex
         /// </summary>
         /// <param name="name">name of the meter attribute</param>
         /// <returns>Returns the values of meter attribute allowed and total uses.</returns>
-        public static LicenseMeterAttribute GetHostLicenseMeterAttribute(string name)
+        public static HostLicenseMeterAttribute GetHostLicenseMeterAttribute(string name)
         {
             uint allowedUses = 0, totalUses = 0, grossUses = 0;
             int status;
@@ -230,7 +230,7 @@ namespace Cryptlex
             }
             if (LexFloatStatusCodes.LF_OK == status)
             {
-                return new LicenseMeterAttribute(name, allowedUses, totalUses, grossUses);
+                return new HostLicenseMeterAttribute(name, allowedUses, totalUses, grossUses);
             }
             throw new LexFloatClientException(status);
         }
