@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Cryptlex
 {
-    public class LicenseMeterAttribute
+    public class HostLicenseMeterAttribute
     {
 
         public string Name;
@@ -15,7 +15,7 @@ namespace Cryptlex
 
         public uint GrossUses;
 
-        public LicenseMeterAttribute(string name, uint allowedUses, uint totalUses, uint grossUses)
+        public HostLicenseMeterAttribute(string name, uint allowedUses, uint totalUses, uint grossUses)
         {
             this.Name = name;
             this.AllowedUses = allowedUses;

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Cryptlex
 {
-    public class ProductVersionFeatureFlag
+    public class HostProductVersionFeatureFlag
     {
 
         public string Name;
@@ -13,7 +13,7 @@ namespace Cryptlex
 
         public string Data;
 
-        public ProductVersionFeatureFlag(string name, bool enabled, string data)
+        public HostProductVersionFeatureFlag(string name, bool enabled, string data)
         {
             this.Name = name;
             this.Enabled = enabled;
