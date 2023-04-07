@@ -21,7 +21,7 @@ Additionally, you can offer trials, subscriptions, and implement floating licens
             <group targetFramework="net45" />
             <group targetFramework="netstandard1.1"/>
         </dependencies>
-        <copyright>Copyright (c) 2022 Cryptlex LLP </copyright>
+        <copyright>Copyright (c) 2023 Cryptlex LLP </copyright>
         <tags>lexfloatclient cryptlex licensing-library floating-licenses</tags>
         <references>
             <reference file="Cryptlex.LexFloatClient.dll" />
@@ -32,8 +32,11 @@ Additionally, you can offer trials, subscriptions, and implement floating licens
         <file src="runtimes\win-x86\native\*.dll" target="runtimes\win-x86\native" />
         <file src="runtimes\win-x64\native\*.dll" target="runtimes\win-x64\native" />
         <file src="runtimes\osx-x64\native\*.dylib" target="runtimes\osx-x64\native" />
+        <file src="runtimes\osx-arm64\native\*.dylib" target="runtimes\osx-arm64\native" />
         <file src="runtimes\linux-x64\native\*.so" target="runtimes\linux-x64\native" />
+        <file src="runtimes\linux-arm64\native\*.so" target="runtimes\linux-arm64\native" />
         <file src="runtimes\linux-musl-x64\native\*.so" target="runtimes\linux-musl-x64\native" />
+        <file src="runtimes\linux-musl-arm64\native\*.so" target="runtimes\linux-musl-arm64\native" />
         <file src="bin\Release\net45\Cryptlex.LexFloatClient.dll" target="lib\net45" />
         <file src="bin\Release\Cryptlex.LexFloatClient.xml" target="lib\net45" />
         <file src="bin\Release\netstandard1.1\Cryptlex.LexFloatClient.dll" target="lib\netstandard1.1" />
