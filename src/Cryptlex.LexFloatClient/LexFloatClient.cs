@@ -115,6 +115,29 @@ namespace Cryptlex
         }
 
         /// <summary>
+        /// Gets the version of this library.
+        /// </summary>
+        /// <returns>Returns the library version.</returns>
+        public static string GetFloatingClientLibraryVersion()
+        {
+            var builder = new StringBuilder(256);
+            int status;
+            if (LexFloatClientNative.IsWindows())
+            {
+                status = IntPtr.Size == 4 ? LexFloatClientNative.GetFloatingClientLibraryVersion_x86(builder, builder.Capacity) : LexFloatClientNative.GetFloatingClientLibraryVersion(builder, builder.Capacity);
+            }
+            else
+            {
+                status = LexFloatClientNative.GetFloatingClientLibraryVersionA(builder, builder.Capacity);
+            }
+            if (LexFloatStatusCodes.LF_OK == status)
+            {
+                return builder.ToString();
+            }
+            throw new LexFloatClientException(status);
+        }
+
+        /// <summary>
         /// Gets the product version name.
         /// </summary>
         /// <returns>Returns the value of the product version name.</returns>
