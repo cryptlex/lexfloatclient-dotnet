@@ -42,6 +42,12 @@ namespace Cryptlex
         public static extern int SetFloatingClientMetadataA(string key, string value);
 
         [DllImport(DLL_FILE_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetFloatingClientLibraryVersion(StringBuilder libraryVersion, int length);
+
+        [DllImport(DLL_FILE_NAME, CharSet = CharSet.Ansi, EntryPoint = "GetFloatingClientLibraryVersion", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetFloatingClientLibraryVersionA(StringBuilder libraryVersion, int length);
+
+        [DllImport(DLL_FILE_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetHostProductVersionName(StringBuilder name, int length);
 
         [DllImport(DLL_FILE_NAME, CharSet = CharSet.Ansi, EntryPoint = "GetHostProductVersionName", CallingConvention = CallingConvention.Cdecl)]
@@ -119,6 +125,9 @@ namespace Cryptlex
 
         [DllImport(DLL_FILE_NAME_X86, CharSet = CharSet.Unicode, EntryPoint = "SetFloatingClientMetadata", CallingConvention = CallingConvention.Cdecl)]
         public static extern int SetFloatingClientMetadata_x86(string key, string value);
+
+        [DllImport(DLL_FILE_NAME_X86, CharSet = CharSet.Unicode, EntryPoint = "GetFloatingClientLibraryVersion", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetFloatingClientLibraryVersion_x86(StringBuilder libraryVersion, int length);
 
         [DllImport(DLL_FILE_NAME_X86, CharSet = CharSet.Unicode, EntryPoint = "GetHostProductVersionName", CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetHostProductVersionName_x86(StringBuilder name, int length);
