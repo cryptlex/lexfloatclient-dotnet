@@ -57,7 +57,7 @@ namespace Cryptlex
                    return "Metadata key length is more than 256 characters.";
                     
                 case LexFloatStatusCodes.LF_E_METADATA_VALUE_LENGTH:
-                   return "Metadata value length is more than 256 characters.";
+                   return "Metadata value length is more than 4096 characters.";
                     
                 case LexFloatStatusCodes.LF_E_FLOATING_CLIENT_METADATA_LIMIT:
                    return "The floating client has reached it's metadata fields limit.";
