@@ -96,7 +96,7 @@ namespace Cryptlex
         /// LexFloatServer dashboard.
         /// </summary>
         /// <param name="key">string of maximum length 256 characters with utf-8 encoding</param>
-        /// <param name="value">string of maximum length 256 characters with utf-8 encoding</param>
+        /// <param name="value">string of maximum length 4096 characters with utf-8 encoding</param>
         public static void SetFloatingClientMetadata(string key, string value)
         {
             int status;
