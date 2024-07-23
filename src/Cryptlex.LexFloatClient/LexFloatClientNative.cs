@@ -90,6 +90,12 @@ namespace Cryptlex
         public static extern int RequestFloatingLicense();
 
         [DllImport(DLL_FILE_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int RequestOfflineFloatingLicense(uint leaseDuration);
+
+        [DllImport(DLL_FILE_NAME, CharSet = CharSet.Ansi, EntryPoint = "RequestOfflineFloatingLicense", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int RequestOfflineFloatingLicenseA(uint leaseDuration);
+
+        [DllImport(DLL_FILE_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
         public static extern int DropFloatingLicense();
 
         [DllImport(DLL_FILE_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
@@ -152,6 +158,9 @@ namespace Cryptlex
 
         [DllImport(DLL_FILE_NAME_X86, CharSet = CharSet.Unicode, EntryPoint = "RequestFloatingLicense", CallingConvention = CallingConvention.Cdecl)]
         public static extern int RequestFloatingLicense_x86();
+
+        [DllImport(DLL_FILE_NAME_X86, CharSet = CharSet.Unicode, EntryPoint = "RequestOfflineFloatingLicense", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int RequestOfflineFloatingLicense_x86(uint leaseDuration);
 
         [DllImport(DLL_FILE_NAME_X86, CharSet = CharSet.Unicode, EntryPoint = "DropFloatingLicense", CallingConvention = CallingConvention.Cdecl)]
         public static extern int DropFloatingLicense_x86();
