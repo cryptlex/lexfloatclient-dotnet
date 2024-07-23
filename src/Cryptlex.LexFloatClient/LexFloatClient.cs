@@ -257,6 +257,29 @@ namespace Cryptlex
             }
             throw new LexFloatClientException(status);
         }
+        
+        /// <summary>
+        /// Gets floating license mode.
+        /// </summary>
+        /// <returns>Returns floating license mode.</returns>
+        public static string GetFloatingLicenseMode()
+        {
+            var builder = new StringBuilder(256);
+            int status;
+            if (LexFloatClientNative.IsWindows())
+            {
+                status = IntPtr.Size == 4 ? LexFloatClientNative.GetFloatingLicenseMode_x86(builder, builder.Capacity) : LexFloatClientNative.GetFloatingLicenseMode(builder, builder.Capacity);
+            }
+            else
+            {
+                status = LexFloatClientNative.GetFloatingLicenseModeA(builder, builder.Capacity);
+            }
+            if (LexFloatStatusCodes.LF_OK == status)
+            {
+                return builder.ToString();
+            }
+            throw new LexFloatClientException(status);
+        }
 
         /// <summary>
         /// Gets the license expiry date timestamp of the LexFloatServer license.
