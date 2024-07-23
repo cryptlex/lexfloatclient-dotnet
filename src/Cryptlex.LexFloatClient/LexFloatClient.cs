@@ -274,6 +274,22 @@ namespace Cryptlex
                     throw new LexFloatClientException(status);
             }
         }
+        /// <summary>
+        /// Gets the lease expiry date timestamp of the floating client.
+        /// </summary>
+        /// <returns>Returns the timestamp.</returns>
+        public static uint GetFloatingClientLeaseExpiryDate()
+        {
+            uint expiryDate = 0;
+            int status = IntPtr.Size == 4 ? LexFloatClientNative.GetFloatingClientLeaseExpiryDate_x86(ref expiryDate) : LexFloatClientNative.GetFloatingClientLeaseExpiryDate(ref expiryDate);
+            switch (status)
+            {
+                case LexFloatStatusCodes.LF_OK:
+                    return expiryDate;
+                default:
+                    throw new LexFloatClientException(status);
+            }
+        }
 
         /// <summary>
         /// Gets the meter attribute uses consumed by the floating client.
