@@ -338,6 +338,8 @@ namespace Cryptlex
                     return true;
                 case LexFloatStatusCodes.LF_E_NO_LICENSE:
                     return false;
+                case LexFloatStatusCodes.LF_FAIL:
+                    return false;
                 default:
                     throw new LexFloatClientException(status);
             }
