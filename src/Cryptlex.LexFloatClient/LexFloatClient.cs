@@ -128,22 +128,22 @@ namespace Cryptlex
         /// This function must be called on every start of your program after SetHostProductId()
         /// function in case the application allows borrowing of licenses or system wide activation.
         /// </summary>
-        /// <param name="flags">
+        /// <param name="flag">
         ///     depending on your application's requirements, choose one of the following values: LF_USER,LF_ALL_USERS.
         ///     
         ///     - LF_USER: This flag indicates that the application does not require admin or root permissions to run.
         ///     - LF_ALL_USERS: This flag is specifically designed for Windows and should be used for system-wide activations.
         /// </param>
-        public static void SetPermissionFlag(PermissionFlags flags)
+        public static void SetPermissionFlag(PermissionFlags flag)
         {
             int status;
             if (LexFloatClientNative.IsWindows())
             {
-                status = IntPtr.Size == 4 ? LexFloatClientNative.SetPermissionFlag_x86(flags) : LexFloatClientNative.SetPermissionFlag(flags);
+                status = IntPtr.Size == 4 ? LexFloatClientNative.SetPermissionFlag_x86(flag) : LexFloatClientNative.SetPermissionFlag(flag);
             }
             else
             {
-                status = LexFloatClientNative.SetPermissionFlagA(flags);
+                status = LexFloatClientNative.SetPermissionFlagA(flag);
             }
             if (LexFloatStatusCodes.LF_OK != status)
             {

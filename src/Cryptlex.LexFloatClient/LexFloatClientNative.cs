@@ -33,10 +33,10 @@ namespace Cryptlex
 
         
         [DllImport(DLL_FILE_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int SetPermissionFlag(LexFloatClient.PermissionFlags flags);
+        public static extern int SetPermissionFlag(LexFloatClient.PermissionFlags flag);
 
         [DllImport(DLL_FILE_NAME, CharSet = CharSet.Ansi, EntryPoint = "SetPermissionFlag", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int SetPermissionFlagA(LexFloatClient.PermissionFlags flags);
+        public static extern int SetPermissionFlagA(LexFloatClient.PermissionFlags flag);
 
 
         [DllImport(DLL_FILE_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
