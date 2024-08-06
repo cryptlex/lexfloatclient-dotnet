@@ -413,6 +413,28 @@ namespace Cryptlex
         }
 
         /// <summary>
+        /// Sends the request to lease the license from the LexFloatServer for offline usage.
+        /// The maximum value of lease duration is configured in the config.yml of LexFloatServer 
+        /// </summary>
+        /// <param name="leaseDuration">value of the lease duration</param>
+        public static void RequestOfflineFloatingLicense(uint leaseDuration)
+        {
+            int status;
+            if (LexFloatClientNative.IsWindows())
+            {
+                status = IntPtr.Size == 4 ? LexFloatClientNative.RequestOfflineFloatingLicense_x86(leaseDuration) : LexFloatClientNative.RequestOfflineFloatingLicense(leaseDuration);
+            }
+            else
+            {
+                status = LexFloatClientNative.RequestOfflineFloatingLicenseA(leaseDuration);
+            }
+            if (LexFloatStatusCodes.LF_OK != status)
+            {
+                throw new LexFloatClientException(status);
+            }
+        }
+
+        /// <summary>
         ///  Sends the request to the LexFloatServer to free the license.
         /// 
         /// Call this function before you exit your application to prevent zombie licenses.
