@@ -118,7 +118,9 @@ namespace Cryptlex
 
                 case LexFloatStatusCodes.LF_E_MACHINE_FINGERPRINT:
                    return "Machine fingerprint has changed since activation.";
-        
+                case LexFloatStatusCodes.LF_E_PROXY_NOT_TRUSTED:
+                   return "Request blocked due to untrusted proxy.";
+                
                 default:
                     return "Unknown error!";
 
