@@ -22,6 +22,12 @@ namespace Cryptlex
         [DllImport(DLL_FILE_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
         public static extern int SetHostProductId(string productId);
 
+        [DllImport(DLL_FILE_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetHostConfigInternal(StringBuilder jsonHostConfig, int length);
+
+        [DllImport(DLL_FILE_NAME, CharSet = CharSet.Ansi, EntryPoint = "GetHostConfigInternal", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetHostConfigInternalA(StringBuilder jsonHostConfig, int length);
+
         [DllImport(DLL_FILE_NAME, CharSet = CharSet.Ansi, EntryPoint = "SetHostProductId", CallingConvention = CallingConvention.Cdecl)]
         public static extern int SetHostProductIdA(string productId);
 
@@ -159,6 +165,9 @@ namespace Cryptlex
 
         [DllImport(DLL_FILE_NAME_X86, CharSet = CharSet.Unicode, EntryPoint = "GetFloatingClientLibraryVersion", CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetFloatingClientLibraryVersion_x86(StringBuilder libraryVersion, int length);
+        
+        [DllImport(DLL_FILE_NAME_X86, CharSet = CharSet.Unicode, EntryPoint = "GetHostConfigInternal", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetHostConfigInternal_x86(StringBuilder jsonHostConfig, int length);
 
         [DllImport(DLL_FILE_NAME_X86, CharSet = CharSet.Unicode, EntryPoint = "GetHostProductVersionName", CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetHostProductVersionName_x86(StringBuilder name, int length);

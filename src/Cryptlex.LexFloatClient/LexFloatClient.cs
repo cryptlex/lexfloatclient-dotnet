@@ -2,6 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Cryptlex
 {
@@ -173,6 +174,37 @@ namespace Cryptlex
             }
             throw new LexFloatClientException(status);
         }
+        /// <summary>
+        /// This function sends a network request to LexFloatServer to get the configuration details.
+        /// </summary>
+        /// <returns>LexFloatServer config</returns>
+        /// <exception cref="LexFloatClientException"></exception>
+        public static HostConfig GetHostConfig()
+        {
+            var builder = new StringBuilder(512);
+            int status;
+            if (LexFloatClientNative.IsWindows())
+            {
+                status = IntPtr.Size == 4 ? LexFloatClientNative.GetHostConfigInternal_x86(builder, builder.Capacity) : LexFloatClientNative.GetHostConfigInternal(builder, builder.Capacity);
+            }
+            else
+            {
+                status = LexFloatClientNative.GetHostConfigInternalA(builder, builder.Capacity);
+            }
+            if (LexFloatStatusCodes.LF_OK == status)
+            {
+                string jsonHostConfig = builder.ToString();
+                if (jsonHostConfig.Length > 0)
+                {
+                    HostConfig hostConfig = null;
+                    hostConfig = JsonConvert.DeserializeObject<HostConfig>(jsonHostConfig);
+                    return hostConfig; 
+                }
+                return null;
+            }
+            throw new LexFloatClientException(status);
+        }
+
 
         /// <summary>
         /// Gets the product version name.
