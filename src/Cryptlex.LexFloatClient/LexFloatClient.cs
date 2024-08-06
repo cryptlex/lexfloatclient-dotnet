@@ -282,7 +282,7 @@ namespace Cryptlex
         /// <returns>Returns the value of metadata for the key.</returns>
         public static string GetFloatingClientMetadata(string key)
         {
-            var builder = new StringBuilder(256);
+            var builder = new StringBuilder(4096);
             int status;
             if (LexFloatClientNative.IsWindows())
             {
