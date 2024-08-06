@@ -13,6 +13,14 @@ namespace Cryptlex
         /* To prevent garbage collection of delegate, need to keep a reference */
         static readonly List<CallbackType> callbackList = new List<CallbackType>();
 
+        public enum PermissionFlags : uint
+        {
+            /// This flag indicates that the application does not require admin or root permissions to run.
+            LF_USER = 10,
+            /// This flag is specifically designed for Windows and should be used for system-wide activations.
+            LF_ALL_USERS = 11,   
+        }
+
 
         /// <summary>
         /// Sets the product id of your application.
@@ -107,6 +115,35 @@ namespace Cryptlex
             else
             {
                 status = LexFloatClientNative.SetFloatingClientMetadataA(key, value);
+            }
+            if (LexFloatStatusCodes.LF_OK != status)
+            {
+                throw new LexFloatClientException(status);
+            }
+        }
+
+        /// <summary>
+        /// Sets the permission flag.
+
+        /// This function must be called on every start of your program after SetHostProductId()
+        /// function in case the application allows borrowing of licenses or system wide activation.
+        /// </summary>
+        /// <param name="flag">
+        ///     depending on your application's requirements, choose one of the following values: LF_USER,LF_ALL_USERS.
+        ///     
+        ///     - LF_USER: This flag indicates that the application does not require admin or root permissions to run.
+        ///     - LF_ALL_USERS: This flag is specifically designed for Windows and should be used for system-wide activations.
+        /// </param>
+        public static void SetPermissionFlag(PermissionFlags flag)
+        {
+            int status;
+            if (LexFloatClientNative.IsWindows())
+            {
+                status = IntPtr.Size == 4 ? LexFloatClientNative.SetPermissionFlag_x86(flag) : LexFloatClientNative.SetPermissionFlag(flag);
+            }
+            else
+            {
+                status = LexFloatClientNative.SetPermissionFlagA(flag);
             }
             if (LexFloatStatusCodes.LF_OK != status)
             {
@@ -257,6 +294,29 @@ namespace Cryptlex
             }
             throw new LexFloatClientException(status);
         }
+        
+        /// <summary>
+        /// Gets floating license mode.
+        /// </summary>
+        /// <returns>Returns floating license mode.</returns>
+        public static string GetFloatingLicenseMode()
+        {
+            var builder = new StringBuilder(256);
+            int status;
+            if (LexFloatClientNative.IsWindows())
+            {
+                status = IntPtr.Size == 4 ? LexFloatClientNative.GetFloatingLicenseMode_x86(builder, builder.Capacity) : LexFloatClientNative.GetFloatingLicenseMode(builder, builder.Capacity);
+            }
+            else
+            {
+                status = LexFloatClientNative.GetFloatingLicenseModeA(builder, builder.Capacity);
+            }
+            if (LexFloatStatusCodes.LF_OK == status)
+            {
+                return builder.ToString();
+            }
+            throw new LexFloatClientException(status);
+        }
 
         /// <summary>
         /// Gets the license expiry date timestamp of the LexFloatServer license.
@@ -274,6 +334,47 @@ namespace Cryptlex
                     throw new LexFloatClientException(status);
             }
         }
+        /// <summary>
+        /// Gets the lease expiry date timestamp of the floating client.
+        /// </summary>
+        /// <returns>Returns the timestamp.</returns>
+        public static uint GetFloatingClientLeaseExpiryDate()
+        {
+            uint expiryDate = 0;
+            int status = IntPtr.Size == 4 ? LexFloatClientNative.GetFloatingClientLeaseExpiryDate_x86(ref expiryDate) : LexFloatClientNative.GetFloatingClientLeaseExpiryDate(ref expiryDate);
+            switch (status)
+            {
+                case LexFloatStatusCodes.LF_OK:
+                    return expiryDate;
+                default:
+                    throw new LexFloatClientException(status);
+            }
+        }
+
+        /// <summary>
+        /// Gets the value of the floating client metadata.
+        /// </summary>
+        /// <param name="key">metadata key to retrieve the value</param>
+        /// <returns>Returns the value of metadata for the key.</returns>
+        public static string GetFloatingClientMetadata(string key)
+        {
+            var builder = new StringBuilder(4096);
+            int status;
+            if (LexFloatClientNative.IsWindows())
+            {
+                status = IntPtr.Size == 4 ? LexFloatClientNative.GetFloatingClientMetadata_x86(key, builder, builder.Capacity) : LexFloatClientNative.GetFloatingClientMetadata(key, builder, builder.Capacity);
+            }
+            else
+            {
+                status = LexFloatClientNative.GetFloatingClientMetadataA(key, builder, builder.Capacity);
+            }
+            if (LexFloatStatusCodes.LF_OK == status)
+            {
+                return builder.ToString();
+            }
+            throw new LexFloatClientException(status);
+        }
+        
 
         /// <summary>
         /// Gets the meter attribute uses consumed by the floating client.
@@ -305,6 +406,28 @@ namespace Cryptlex
         public static void RequestFloatingLicense()
         {
             int status = IntPtr.Size == 4 ? LexFloatClientNative.RequestFloatingLicense_x86() : LexFloatClientNative.RequestFloatingLicense();
+            if (LexFloatStatusCodes.LF_OK != status)
+            {
+                throw new LexFloatClientException(status);
+            }
+        }
+
+        /// <summary>
+        /// Sends the request to lease the license from the LexFloatServer for offline usage.
+        /// The maximum value of lease duration is configured in the config.yml of LexFloatServer 
+        /// </summary>
+        /// <param name="leaseDuration">value of the lease duration</param>
+        public static void RequestOfflineFloatingLicense(uint leaseDuration)
+        {
+            int status;
+            if (LexFloatClientNative.IsWindows())
+            {
+                status = IntPtr.Size == 4 ? LexFloatClientNative.RequestOfflineFloatingLicense_x86(leaseDuration) : LexFloatClientNative.RequestOfflineFloatingLicense(leaseDuration);
+            }
+            else
+            {
+                status = LexFloatClientNative.RequestOfflineFloatingLicenseA(leaseDuration);
+            }
             if (LexFloatStatusCodes.LF_OK != status)
             {
                 throw new LexFloatClientException(status);

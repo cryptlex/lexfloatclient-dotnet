@@ -89,7 +89,7 @@ namespace Cryptlex
         /*
             CODE: LF_E_LICENSE_LIMIT_REACHED
 
-            MESSAGE: The server has reached it's allowed limit of floating licenses.
+            MESSAGE: The server has reached its allowed limit of floating licenses.
         */
         public const int LF_E_LICENSE_LIMIT_REACHED = 49;
 
@@ -122,9 +122,9 @@ namespace Cryptlex
         public const int LF_E_METADATA_VALUE_LENGTH = 53;
 
         /*
-            CODE: LF_E_ACTIVATION_METADATA_LIMIT
+            CODE: LF_E_FLOATING_CLIENT_METADATA_LIMIT
 
-            MESSAGE: The floating client has reached it's metadata fields limit.
+            MESSAGE: The floating client has reached its metadata fields limit.
         */
         public const int LF_E_FLOATING_CLIENT_METADATA_LIMIT = 54;
 
@@ -138,7 +138,7 @@ namespace Cryptlex
         /*
             CODE: LF_E_METER_ATTRIBUTE_USES_LIMIT_REACHED
 
-            MESSAGE: The meter attribute has reached it's usage limit.
+            MESSAGE: The meter attribute has reached its usage limit.
         */
         public const int LF_E_METER_ATTRIBUTE_USES_LIMIT_REACHED = 56;
 
@@ -157,11 +157,68 @@ namespace Cryptlex
         public const int LF_E_FEATURE_FLAG_NOT_FOUND = 58;
 
         /*
+            CODE: LF_E_SYSTEM_PERMISSION
+
+            MESSAGE: Insufficient system permissions.
+        */
+        public const int LF_E_SYSTEM_PERMISSION = 59;
+
+        /*
             CODE: LF_E_IP
 
             MESSAGE: IP address is not allowed.
         */
         public const int LF_E_IP = 60;
+
+        /*
+            CODE: LF_E_INVALID_PERMISSION_FLAG
+
+            MESSAGE: Invalid permission flag.
+        */
+        public const int LF_E_INVALID_PERMISSION_FLAG = 61;
+
+        /*
+            CODE: LF_E_OFFLINE_FLOATING_LICENSE_NOT_ALLOWED
+
+            MESSAGE: Offline floating license is not allowed for per-instance leasing strategy.
+        */
+        public const int LF_E_OFFLINE_FLOATING_LICENSE_NOT_ALLOWED = 62;
+
+        /*
+            CODE: LF_E_MAX_OFFLINE_LEASE_DURATION_EXCEEDED
+
+            MESSAGE: Maximum offline lease duration exceeded.
+        */
+        public const int LF_E_MAX_OFFLINE_LEASE_DURATION_EXCEEDED = 63;
+
+        /*
+            CODE: LF_E_ALLOWED_OFFLINE_FLOATING_CLIENTS_LIMIT_REACHED
+
+            MESSAGE: Allowed offline floating clients limit reached.
+        */
+        public const int LF_E_ALLOWED_OFFLINE_FLOATING_CLIENTS_LIMIT_REACHED = 64;
+
+        /*
+            CODE: LF_E_WMIC
+
+            MESSAGE: Fingerprint couldn't be generated because Windows Management Instrumentation (WMI) service has been disabled.
+            This error is specific to Windows only.
+        */
+        public const int LF_E_WMIC = 65;
+
+        /*
+            CODE: LF_E_MACHINE_FINGERPRINT
+
+            MESSAGE: Machine fingerprint has changed since activation.
+        */
+        public const int LF_E_MACHINE_FINGERPRINT = 66;
+
+        /*
+            CODE: LF_E_PROXY_NOT_TRUSTED
+
+            MESSAGE: Request blocked due to untrusted proxy.
+        */
+        public const int LF_E_PROXY_NOT_TRUSTED = 67;
 
         /*
             CODE: LF_E_CLIENT
@@ -180,8 +237,8 @@ namespace Cryptlex
         /*
             CODE: LF_E_SERVER_TIME_MODIFIED
 
-            MESSAGE: System time on server has been tampered with. Ensure
-            your date and time settings are correct on the server machine.
+            MESSAGE: System time on server has been tampered with.
+            Ensure your date and time settings are correct on the server machine.
         */
         public const int LF_E_SERVER_TIME_MODIFIED = 72;
 
