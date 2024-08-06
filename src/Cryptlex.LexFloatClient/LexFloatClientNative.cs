@@ -79,6 +79,12 @@ namespace Cryptlex
 
         [DllImport(DLL_FILE_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetHostLicenseExpiryDate(ref uint expiryDate);
+        
+        [DllImport(DLL_FILE_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetFloatingClientMetadata(string key, StringBuilder value, int length);
+
+        [DllImport(DLL_FILE_NAME, CharSet = CharSet.Ansi, EntryPoint = "GetFloatingClientMetadata", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetFloatingClientMetadataA(string key, StringBuilder value, int length);
 
         [DllImport(DLL_FILE_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetFloatingClientLeaseExpiryDate(ref uint expiryDate);
@@ -149,6 +155,9 @@ namespace Cryptlex
 
         [DllImport(DLL_FILE_NAME_X86, CharSet = CharSet.Unicode, EntryPoint = "GetHostLicenseExpiryDate", CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetHostLicenseExpiryDate_x86(ref uint expiryDate);
+
+        [DllImport(DLL_FILE_NAME_X86, CharSet = CharSet.Unicode, EntryPoint = "GetFloatingClientMetadata", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetFloatingClientMetadata_x86(string key, StringBuilder value, int length);
 
         [DllImport(DLL_FILE_NAME_X86, CharSet = CharSet.Unicode, EntryPoint = "GetFloatingClientLeaseExpiryDate", CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetFloatingClientLeaseExpiryDate_x86(ref uint expiryDate);
