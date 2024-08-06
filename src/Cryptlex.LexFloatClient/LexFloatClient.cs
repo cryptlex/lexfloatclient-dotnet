@@ -13,6 +13,14 @@ namespace Cryptlex
         /* To prevent garbage collection of delegate, need to keep a reference */
         static readonly List<CallbackType> callbackList = new List<CallbackType>();
 
+        public enum PermissionFlags : uint
+        {
+            /// This flag indicates that the application does not require admin or root permissions to run.
+            LF_USER = 10,
+            /// This flag is specifically designed for Windows and should be used for system-wide activations.
+            LF_ALL_USERS = 11,   
+        }
+
 
         /// <summary>
         /// Sets the product id of your application.
@@ -107,6 +115,35 @@ namespace Cryptlex
             else
             {
                 status = LexFloatClientNative.SetFloatingClientMetadataA(key, value);
+            }
+            if (LexFloatStatusCodes.LF_OK != status)
+            {
+                throw new LexFloatClientException(status);
+            }
+        }
+
+        /// <summary>
+        /// Sets the permission flag.
+
+        /// This function must be called on every start of your program after SetHostProductId()
+        /// function in case the application allows borrowing of licenses or system wide activation.
+        /// </summary>
+        /// <param name="flag">
+        ///     depending on your application's requirements, choose one of the following values: LF_USER,LF_ALL_USERS.
+        ///     
+        ///     - LF_USER: This flag indicates that the application does not require admin or root permissions to run.
+        ///     - LF_ALL_USERS: This flag is specifically designed for Windows and should be used for system-wide activations.
+        /// </param>
+        public static void SetPermissionFlag(PermissionFlags flag)
+        {
+            int status;
+            if (LexFloatClientNative.IsWindows())
+            {
+                status = IntPtr.Size == 4 ? LexFloatClientNative.SetPermissionFlag_x86(flag) : LexFloatClientNative.SetPermissionFlag(flag);
+            }
+            else
+            {
+                status = LexFloatClientNative.SetPermissionFlagA(flag);
             }
             if (LexFloatStatusCodes.LF_OK != status)
             {
