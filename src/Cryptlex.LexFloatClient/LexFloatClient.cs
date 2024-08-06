@@ -297,6 +297,47 @@ namespace Cryptlex
                     throw new LexFloatClientException(status);
             }
         }
+        /// <summary>
+        /// Gets the lease expiry date timestamp of the floating client.
+        /// </summary>
+        /// <returns>Returns the timestamp.</returns>
+        public static uint GetFloatingClientLeaseExpiryDate()
+        {
+            uint expiryDate = 0;
+            int status = IntPtr.Size == 4 ? LexFloatClientNative.GetFloatingClientLeaseExpiryDate_x86(ref expiryDate) : LexFloatClientNative.GetFloatingClientLeaseExpiryDate(ref expiryDate);
+            switch (status)
+            {
+                case LexFloatStatusCodes.LF_OK:
+                    return expiryDate;
+                default:
+                    throw new LexFloatClientException(status);
+            }
+        }
+
+        /// <summary>
+        /// Gets the value of the floating client metadata.
+        /// </summary>
+        /// <param name="key">metadata key to retrieve the value</param>
+        /// <returns>Returns the value of metadata for the key.</returns>
+        public static string GetFloatingClientMetadata(string key)
+        {
+            var builder = new StringBuilder(4096);
+            int status;
+            if (LexFloatClientNative.IsWindows())
+            {
+                status = IntPtr.Size == 4 ? LexFloatClientNative.GetFloatingClientMetadata_x86(key, builder, builder.Capacity) : LexFloatClientNative.GetFloatingClientMetadata(key, builder, builder.Capacity);
+            }
+            else
+            {
+                status = LexFloatClientNative.GetFloatingClientMetadataA(key, builder, builder.Capacity);
+            }
+            if (LexFloatStatusCodes.LF_OK == status)
+            {
+                return builder.ToString();
+            }
+            throw new LexFloatClientException(status);
+        }
+        
 
         /// <summary>
         /// Gets the meter attribute uses consumed by the floating client.
@@ -360,6 +401,8 @@ namespace Cryptlex
                 case LexFloatStatusCodes.LF_OK:
                     return true;
                 case LexFloatStatusCodes.LF_E_NO_LICENSE:
+                    return false;
+                case LexFloatStatusCodes.LF_FAIL:
                     return false;
                 default:
                     throw new LexFloatClientException(status);
