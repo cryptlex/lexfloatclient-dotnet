@@ -310,7 +310,8 @@ namespace Cryptlex
         /// <returns>Returns the values of meter attribute allowed and total uses.</returns>
         public static HostLicenseMeterAttribute GetHostLicenseMeterAttribute(string name)
         {
-            uint allowedUses = 0, totalUses = 0, grossUses = 0;
+            long allowedUses = 0;
+            ulong totalUses = 0, grossUses = 0;
             int status;
             if (LexFloatClientNative.IsWindows())
             {
