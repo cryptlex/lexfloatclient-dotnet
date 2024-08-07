@@ -18,10 +18,6 @@
 Additionally, you can offer trials, subscriptions, and implement floating licenses using LexFloatClient library.
         </description>
         <dependencies>
-            <group targetFramework="net45" />
-            <group targetFramework="netstandard1.1"/>
-        </dependencies>
-        <dependencies>
           <group targetFramework="net45">
             <dependency id="Newtonsoft.Json" version="12.0.3" />
           </group>
