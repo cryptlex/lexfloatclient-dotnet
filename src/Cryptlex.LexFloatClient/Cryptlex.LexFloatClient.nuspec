@@ -35,6 +35,7 @@ Additionally, you can offer trials, subscriptions, and implement floating licens
         <file src="build\Cryptlex.LexFloatClient.targets" target="build\Cryptlex.LexFloatClient.targets" />
         <file src="runtimes\win-x86\native\*.dll" target="runtimes\win-x86\native" />
         <file src="runtimes\win-x64\native\*.dll" target="runtimes\win-x64\native" />
+        <file src="runtimes\win-arm64\native\*.dll" target="runtimes\win-arm64\native" />
         <file src="runtimes\osx-x64\native\*.dylib" target="runtimes\osx-x64\native" />
         <file src="runtimes\osx-arm64\native\*.dylib" target="runtimes\osx-arm64\native" />
         <file src="runtimes\linux-x64\native\*.so" target="runtimes\linux-x64\native" />

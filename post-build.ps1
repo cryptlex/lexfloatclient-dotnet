@@ -1,5 +1,5 @@
 $base_url = "https://dl.cryptlex.com/downloads"
-$lexfloatclient_version ="v4.9.2"
+$lexfloatclient_version ="v4.9.3"
 new-item -Name tmp -ItemType directory
 
 $url = "$base_url/$lexfloatclient_version/LexFloatClient-Win.zip"
@@ -8,6 +8,7 @@ $output = "$PSScriptRoot\tmp\LexFloatClient-Win.zip"
 Expand-Archive "$PSScriptRoot\tmp\LexFloatClient-Win.zip" -DestinationPath "$PSScriptRoot\tmp\LexFloatClient-Win"
 Copy-Item -Path "$PSScriptRoot\tmp\LexFloatClient-Win\libs\vc14\x64\LexFloatClient.dll" -Destination "$PSScriptRoot\src\Cryptlex.LexFloatClient\runtimes\win-x64\native\LexFloatClient.dll"
 Copy-Item -Path "$PSScriptRoot\tmp\LexFloatClient-Win\libs\vc14\x86\LexFloatClient.dll" -Destination "$PSScriptRoot\src\Cryptlex.LexFloatClient\runtimes\win-x86\native\LexFloatClient32.dll"
+Copy-Item -Path "$PSScriptRoot\tmp\LexFloatClient-Win\libs\vc17\arm64\LexFloatClient.dll" -Destination "$PSScriptRoot\src\Cryptlex.LexFloatClient\runtimes\win-arm64\native\LexFloatClient.dll"
 
 $url = "$base_url/$lexfloatclient_version/LexFloatClient-Linux.zip"
 $output = "$PSScriptRoot\tmp\LexFloatClient-Linux.zip"
