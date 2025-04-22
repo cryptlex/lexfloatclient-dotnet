@@ -252,6 +252,110 @@ namespace Cryptlex
             throw new LexFloatClientException(status);
         }
 
+
+        /// <summary>
+        /// Gets the name of the entitlement set associated with the LexFloatServer license.
+        /// </summary>
+        /// <returns>The host license entitlement set name.</returns>
+        public static string GetHostLicenseEntitlementSetName()
+        {
+            var builder = new StringBuilder(512);
+            int status;
+            if (LexFloatClientNative.IsWindows())
+            {
+                status = IntPtr.Size == 4 ? LexFloatClientNative.GetHostLicenseEntitlementSetName_x86(builder, builder.Capacity) : LexFloatClientNative.GetHostLicenseEntitlementSetName(builder, builder.Capacity);
+            }
+            else
+            {
+                status = LexFloatClientNative.GetHostLicenseEntitlementSetNameA(builder, builder.Capacity);
+            }
+            if (LexFloatStatusCodes.LF_OK == status)
+            {
+                return builder.ToString();
+            }
+            throw new LexFloatClientException(status);
+        }
+
+        /// <summary>
+        /// Gets the display name of the entitlement set associated with the LexFloatServer license.
+        /// </summary>
+        /// <returns>The host license entitlement set display name.</returns>
+        public static string GetHostLicenseEntitlementSetDisplayName()
+        {
+            var builder = new StringBuilder(512);
+            int status;
+            if (LexFloatClientNative.IsWindows())
+            {
+                status = IntPtr.Size == 4 ? LexFloatClientNative.GetHostLicenseEntitlementSetDisplayName_x86(builder, builder.Capacity) : LexFloatClientNative.GetHostLicenseEntitlementSetDisplayName(builder, builder.Capacity);
+            }
+            else
+            {
+                status = LexFloatClientNative.GetHostLicenseEntitlementSetDisplayNameA(builder, builder.Capacity);
+            }
+            if (LexFloatStatusCodes.LF_OK == status)
+            {
+                return builder.ToString();
+            }
+            throw new LexFloatClientException(status);
+        }
+
+        /// <summary>
+        /// Gets the feature entitlements associated with the LexFloatServer license.
+        /// </summary>
+        /// <returns>The host license feature entitlements.</returns>
+        public static List<FeatureEntitlement> GetFeatureEntitlements()
+        {
+            var builder = new StringBuilder(4096);
+            int status;
+            if (LexFloatClientNative.IsWindows())
+            {
+                status = IntPtr.Size == 4 ? LexFloatClientNative.GetHostFeatureEntitlementsInternal_x86(builder, builder.Capacity) : LexFloatClientNative.GetHostFeatureEntitlementsInternal(builder, builder.Capacity);
+            }
+            else
+            {
+                status = LexFloatClientNative.GetHostFeatureEntitlementsInternalA(builder, builder.Capacity);
+            }
+            if (LexFloatStatusCodes.LF_OK == status)
+            {
+                string featureEntitlementsJson = builder.ToString();
+                List<FeatureEntitlement> featureEntitlements = new List<FeatureEntitlement>();
+                if (!string.IsNullOrEmpty(featureEntitlementsJson)) 
+                {
+                    featureEntitlements = JsonConvert.DeserializeObject<List<FeatureEntitlement>>(featureEntitlementsJson);
+                    return featureEntitlements;
+                }
+                return featureEntitlements;
+            }
+            throw new LexFloatClientException(status);
+        }
+
+        /// <summary>
+        /// Gets the feature entitlement associated with the LexFloatServer license.
+        /// </summary>
+        /// <param name="featureName">The name of the feature.</param>
+        /// <returns>The host license feature entitlement.</returns>
+        public static FeatureEntitlement GetFeatureEntitlement(string featureName)
+        {
+            var builder = new StringBuilder(512);
+            int status;
+
+            if (LexFloatClientNative.IsWindows())
+            {
+                status = IntPtr.Size == 4 ? LexFloatClientNative.GetHostFeatureEntitlementInternal_x86(featureName, builder, builder.Capacity) : LexFloatClientNative.GetHostFeatureEntitlementInternal(featureName, builder, builder.Capacity);
+            }
+            else
+            {
+                status = LexFloatClientNative.GetHostFeatureEntitlementInternalA(featureName, builder, builder.Capacity);
+            }
+
+            if (LexFloatStatusCodes.LF_OK == status)
+            {
+                string featureEntitlementJson = builder.ToString();
+                return JsonConvert.DeserializeObject<FeatureEntitlement>(featureEntitlementJson);
+            }
+            throw new LexFloatClientException(status);
+        }
+
         /// <summary>
         /// Gets the product version feature flag.
         /// </summary>
