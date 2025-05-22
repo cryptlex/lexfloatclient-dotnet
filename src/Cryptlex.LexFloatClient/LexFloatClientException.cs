@@ -118,9 +118,16 @@ namespace Cryptlex
 
                 case LexFloatStatusCodes.LF_E_MACHINE_FINGERPRINT:
                    return "Machine fingerprint has changed since activation.";
+
                 case LexFloatStatusCodes.LF_E_PROXY_NOT_TRUSTED:
                    return "Request blocked due to untrusted proxy.";
-                
+
+                case LexFloatStatusCodes.LF_E_ENTITLEMENT_SET_NOT_LINKED:
+                   return "No entitlement set is linked to the license.";
+
+                case LexFloatStatusCodes.LF_E_FEATURE_ENTITLEMENT_NOT_FOUND:
+                   return "The feature entitlement does not exist.";
+
                 default:
                     return "Unknown error!";
 
