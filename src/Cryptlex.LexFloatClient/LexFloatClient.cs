@@ -397,6 +397,31 @@ namespace Cryptlex
         }
 
         /// <summary>
+        /// Get the value of the  metadata field associated with the
+        /// LexFloatServer product metadata key.
+        /// </summary>
+        /// <param name="key">metadata key to retrieve the value</param>
+        /// <returns>Returns the value of metadata for the key.</returns>
+        public static string GetHostProductMetadata(string key)
+        {
+            var builder = new StringBuilder(4096);
+            int status;
+            if (LexFloatClientNative.IsWindows())
+            {
+                status = IntPtr.Size == 4 ? LexFloatClientNative.GetHostProductMetadata_x86(key, builder, builder.Capacity) : LexFloatClientNative.GetHostProductMetadata(key, builder, builder.Capacity);
+            }
+            else
+            {
+                status = LexFloatClientNative.GetHostProductMetadataA(key, builder, builder.Capacity);
+            }
+            if (LexFloatStatusCodes.LF_OK == status)
+            {
+                return builder.ToString();
+            }
+            throw new LexFloatClientException(status);
+        }
+
+        /// <summary>
         /// Get the value of the license metadata field associated with the
         /// LexFloatServer license key.
         /// </summary>
