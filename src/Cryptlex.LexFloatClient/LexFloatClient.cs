@@ -397,8 +397,7 @@ namespace Cryptlex
         }
 
         /// <summary>
-        /// Get the value of the  metadata field associated with the
-        /// LexFloatServer product metadata key.
+        /// Gets the value of the product metadata.
         /// </summary>
         /// <param name="key">metadata key to retrieve the value</param>
         /// <returns>Returns the value of metadata for the key.</returns>
