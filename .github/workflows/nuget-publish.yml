@@ -39,7 +39,7 @@ jobs:
      
   build-publish:
     needs: update-version
-    runs-on: windows-2019
+    runs-on: windows-2022
     steps:
     - uses: actions/checkout@v2
     - run: git pull origin master --ff-only
@@ -54,10 +54,10 @@ jobs:
       run: nuget restore Cryptlex.LexFloatClient.sln
       
     - name: Add msbuild to PATH
-      uses: microsoft/setup-msbuild@v1.0.2
+      uses: microsoft/setup-msbuild@v2
     
     - name: Build Solution
-      run: msbuild Cryptlex.LexFloatClient.sln /p:platform="Any CPU" /p:configuration="Release" /p:VisualStudioVersion="16.0"
+      run: msbuild Cryptlex.LexFloatClient.sln /p:platform="Any CPU" /p:configuration="Release" /p:VisualStudioVersion="17.0"
     
     - name: Signing DLLs
       uses: GabrielAcostaEngler/signtool-code-sign@main
@@ -70,8 +70,8 @@ jobs:
         timestamp-server: 'http://timestamp.sectigo.com'
 
     - name: Download Native Libs
-      run: .\post-build.ps1
       shell: powershell
+      run: .\post-build.ps1
       
     - name: Pack NuGet Package
       run: nuget pack src\Cryptlex.LexFloatClient\Cryptlex.LexFloatClient.nuspec -NonInteractive -OutputDirectory nupkg -Properties Configuration=Release -Verbosity Detailed
