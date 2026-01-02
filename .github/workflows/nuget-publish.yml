@@ -57,3 +57,20 @@ jobs:
     - name: Push NuGet Package
       run: nuget push nupkg\*.nupkg -SkipDuplicate -Source https://api.nuget.org/v3/index.json -NoSymbols
 
+    - name: Extract version and create tag
+      shell: bash
+      run: |
+        VERSION=$(sed -n 's/^[[:space:]]*<version>\([^<]*\)<\/version>.*/\1/p' src/Cryptlex.LexFloatClient/Cryptlex.LexFloatClient.nuspec)
+
+        git tag "$VERSION" 2>/dev/null || echo "Tag already exists"
+        git push origin "$VERSION" || true
+
+    - name: Notify slack releases channel
+      uses: slackapi/slack-github-action@v2
+      with:
+        webhook: ${{ secrets.SLACK_RELEASES_PROD_WEBHOOK_URL }}
+        webhook-type: webhook-trigger
+        payload: |
+          status: "${{ job.status }}"
+          environment: "PRODUCTION"
+          project: "LexFloatClient Dotnet"
