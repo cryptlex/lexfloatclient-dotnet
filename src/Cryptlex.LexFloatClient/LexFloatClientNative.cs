@@ -91,6 +91,9 @@ namespace Cryptlex
         public static extern int GetHostLicenseEntitlementSetDisplayNameA(StringBuilder displayName, int length);
 
         [DllImport(DLL_FILE_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetHostLicenseEntitlementSetTier(ref long tier);
+
+        [DllImport(DLL_FILE_NAME, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetHostFeatureEntitlementsInternal(StringBuilder hostFeatureEntitlementsJson, int length);
 
         [DllImport(DLL_FILE_NAME, CharSet = CharSet.Ansi, EntryPoint = "GetHostFeatureEntitlementsInternal", CallingConvention = CallingConvention.Cdecl)]
@@ -213,6 +216,9 @@ namespace Cryptlex
 
         [DllImport(DLL_FILE_NAME_X86, CharSet = CharSet.Unicode, EntryPoint = "GetHostLicenseEntitlementSetDisplayName", CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetHostLicenseEntitlementSetDisplayName_x86(StringBuilder displayName, int length);
+
+        [DllImport(DLL_FILE_NAME_X86, CharSet = CharSet.Unicode, EntryPoint = "GetHostLicenseEntitlementSetTier", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetHostLicenseEntitlementSetTier_x86(ref long tier);
 
         [DllImport(DLL_FILE_NAME_X86, CharSet = CharSet.Unicode, EntryPoint = "GetHostFeatureEntitlementsInternal", CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetHostFeatureEntitlementsInternal_x86(StringBuilder hostFeatureEntitlementsJson, int length);

@@ -330,6 +330,29 @@ namespace Cryptlex
         }
 
         /// <summary>
+        /// Gets the tier of the entitlement set associated with the LexFloatServer license.
+        /// </summary>
+        /// <returns>The host license entitlement set tier.</returns>
+        public static long GetHostLicenseEntitlementSetTier()
+        {
+            long tier = 0;
+            int status;
+            if (LexFloatClientNative.IsWindows())
+            {
+                status = IntPtr.Size == 4 ? LexFloatClientNative.GetHostLicenseEntitlementSetTier_x86(ref tier) : LexFloatClientNative.GetHostLicenseEntitlementSetTier(ref tier);
+            }
+            else
+            {
+                status = LexFloatClientNative.GetHostLicenseEntitlementSetTier(ref tier);
+            }
+            if (LexFloatStatusCodes.LF_OK == status)
+            {
+                return tier;
+            }
+            throw new LexFloatClientException(status);
+        }
+
+        /// <summary>
         /// Gets the feature entitlements associated with the LexFloatServer license.
         /// 
         /// Feature entitlements can be linked directly to a license (license feature entitlements)
