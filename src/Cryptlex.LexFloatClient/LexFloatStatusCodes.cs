@@ -283,5 +283,12 @@ namespace Cryptlex
             MESSAGE: The grace period for server license is over.
         */
         public const int LF_E_SERVER_LICENSE_GRACE_PERIOD_OVER = 76;
+
+        /*
+            CODE: LF_E_LEASE_EXCEEDS_SERVER_LICENSE_EXPIRY
+
+            MESSAGE: Requested offline lease duration exceeds server license expiry date.
+        */
+        public const int LF_E_LEASE_EXCEEDS_SERVER_LICENSE_EXPIRY = 77;
     }
 }
