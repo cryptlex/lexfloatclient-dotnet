@@ -127,7 +127,10 @@ namespace Cryptlex
 
                 case LexFloatStatusCodes.LF_E_FEATURE_ENTITLEMENT_NOT_FOUND:
                    return "The feature entitlement does not exist.";
-
+                
+                case LexFloatStatusCodes.LF_E_LEASE_EXCEEDS_SERVER_LICENSE_EXPIRY:
+                   return "Requested offline lease duration exceeds server license expiry date.";
+                
                 default:
                     return "Unknown error!";
 
