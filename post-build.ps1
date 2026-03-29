@@ -25,4 +25,4 @@ $output = "$PSScriptRoot\tmp\LexFloatClient-Mac.zip"
 Expand-Archive "$PSScriptRoot\tmp\LexFloatClient-Mac.zip" -DestinationPath "$PSScriptRoot\tmp\LexFloatClient-Mac"
 Copy-Item -Path "$PSScriptRoot\tmp\LexFloatClient-Mac\libs\clang\x86_64\libLexFloatClient.dylib" -Destination "$PSScriptRoot\src\Cryptlex.LexFloatClient\runtimes\osx-x64\native\libLexFloatClient.dylib"
 Copy-Item -Path "$PSScriptRoot\tmp\LexFloatClient-Mac\libs\clang\arm64\libLexFloatClient.dylib" -Destination "$PSScriptRoot\src\Cryptlex.LexFloatClient\runtimes\osx-arm64\native\libLexFloatClient.dylib"
-
+Copy-Item -Path "$PSScriptRoot\tmp\LexFloatClient-Mac\THIRD-PARTY-NOTICES.txt" -Destination "$PSScriptRoot\src\Cryptlex.LexFloatClient\runtimes\"
