@@ -19,10 +19,13 @@ Additionally, you can offer trials, subscriptions, and implement floating licens
         </description>
         <dependencies>
           <group targetFramework="net45">
-            <dependency id="Newtonsoft.Json" version="12.0.3" />
+            <dependency id="Newtonsoft.Json" version="13.0.3" />
           </group>
           <group targetFramework="netstandard1.1">
-            <dependency id="Newtonsoft.Json" version="12.0.3" />
+            <dependency id="Newtonsoft.Json" version="13.0.3" />
+          </group>
+          <group targetFramework="netstandard2.0">
+            <dependency id="System.Text.Json" version="8.0.6" />
           </group>
         </dependencies>
         <copyright>Copyright (c) 2025 Cryptlex LLP </copyright>
@@ -43,8 +46,10 @@ Additionally, you can offer trials, subscriptions, and implement floating licens
         <file src="runtimes\linux-musl-x64\native\*.so" target="runtimes\linux-musl-x64\native" />
         <file src="runtimes\linux-musl-arm64\native\*.so" target="runtimes\linux-musl-arm64\native" />
         <file src="bin\Release\net45\Cryptlex.LexFloatClient.dll" target="lib\net45" />
-        <file src="bin\Release\Cryptlex.LexFloatClient.xml" target="lib\net45" />
+        <file src="bin\Release\net45\Cryptlex.LexFloatClient.xml" target="lib\net45" />
         <file src="bin\Release\netstandard1.1\Cryptlex.LexFloatClient.dll" target="lib\netstandard1.1" />
-        <file src="bin\Release\Cryptlex.LexFloatClient.xml" target="lib\netstandard1.1" />
+        <file src="bin\Release\netstandard1.1\Cryptlex.LexFloatClient.xml" target="lib\netstandard1.1" />
+        <file src="bin\Release\netstandard2.0\Cryptlex.LexFloatClient.dll" target="lib\netstandard2.0" />
+        <file src="bin\Release\netstandard2.0\Cryptlex.LexFloatClient.xml" target="lib\netstandard2.0" />
     </files>
 </package>

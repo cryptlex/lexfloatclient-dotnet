@@ -6,7 +6,7 @@ namespace Cryptlex
 {
     public class HostConfig
     {
-        public string maxOfflineLeaseDuration;
+        public long maxOfflineLeaseDuration;
 
     }
 }

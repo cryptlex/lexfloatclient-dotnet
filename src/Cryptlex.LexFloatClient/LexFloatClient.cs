@@ -2,8 +2,11 @@
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Collections.Generic;
+#if NETSTANDARD2_0
+using System.Text.Json;
+#else
 using Newtonsoft.Json;
-
+#endif
 namespace Cryptlex
 {
     public static class LexFloatClient
@@ -22,6 +25,21 @@ namespace Cryptlex
             LF_ALL_USERS = 11,   
         }
 
+#if NETSTANDARD2_0
+        private static readonly JsonSerializerOptions jsonOptions = new JsonSerializerOptions { IncludeFields = true, PropertyNameCaseInsensitive = true };
+#endif
+        private static T Deserialize<T>(string json)
+        {
+            if (string.IsNullOrEmpty(json))
+            {
+                return default(T);
+            }
+#if NETSTANDARD2_0
+            return JsonSerializer.Deserialize<T>(json, jsonOptions);
+#else
+            return JsonConvert.DeserializeObject<T>(json);
+#endif
+        }
 
         /// <summary>
         /// Sets the product id of your application.
@@ -197,7 +215,7 @@ namespace Cryptlex
                 if (jsonHostConfig.Length > 0)
                 {
                     HostConfig hostConfig = null;
-                    hostConfig = JsonConvert.DeserializeObject<HostConfig>(jsonHostConfig);
+                    hostConfig = Deserialize<HostConfig>(jsonHostConfig);
                     return hostConfig; 
                 }
                 return null;
@@ -379,7 +397,7 @@ namespace Cryptlex
                 List<HostFeatureEntitlement> hostFeatureEntitlements = new List<HostFeatureEntitlement>();
                 if (!string.IsNullOrEmpty(hostFeatureEntitlementsJson)) 
                 {
-                    hostFeatureEntitlements = JsonConvert.DeserializeObject<List<HostFeatureEntitlement>>(hostFeatureEntitlementsJson);
+                    hostFeatureEntitlements = Deserialize<List<HostFeatureEntitlement>>(hostFeatureEntitlementsJson);
                     return hostFeatureEntitlements;
                 }
                 return hostFeatureEntitlements;
@@ -414,7 +432,7 @@ namespace Cryptlex
             if (LexFloatStatusCodes.LF_OK == status)
             {
                 string hostFeatureEntitlementJson = builder.ToString();
-                return JsonConvert.DeserializeObject<HostFeatureEntitlement>(hostFeatureEntitlementJson);
+                return Deserialize<HostFeatureEntitlement>(hostFeatureEntitlementJson);
             }
             throw new LexFloatClientException(status);
         }
